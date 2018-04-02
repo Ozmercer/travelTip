@@ -5,6 +5,7 @@ import mapService from './services/map.service.js'
 
 var gLoc = {};
 var glocName;
+var tempLoc;
 
 // locService.getLocs()
 //     .then(locs => console.log('locs', locs))
@@ -17,7 +18,7 @@ window.onload = () => {
                 if (getParameterByName('lat')) gLoc.lat = +getParameterByName('lat');
                 if (getParameterByName('lng')) gLoc.lng = +getParameterByName('lng');
                 console.log('global:',gLoc);
-                
+                tempLoc = gLoc;
                 newLoc(gLoc)
             }
         );
@@ -37,14 +38,16 @@ document.querySelector('.btn1').addEventListener('click', (ev) => {
 
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
     var elSpan = document.querySelector('.clipboard span');
-    elSpan.innerHTML = `window.location.href`;
-
+    elSpan.innerHTML = window.location.href + `?lat=${tempLoc.lat}&amp;lng=${tempLoc.lng}`;
+    console.log(elSpan.innerHTML);
+    
 })
 
 document.querySelector('form').addEventListener('submit', (ev) => {
     var elInput = document.querySelector('input')
     mapService.getCoordsByName(elInput.value)
         .then(locObj => {
+            tempLoc = {lat:locObj.loc.lat, lng:locObj.loc.lng}
             mapService.addMarker(locObj.loc);
             mapService.moveCenter(locObj.loc)
             mapService.getWeather(locObj.loc)
