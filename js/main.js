@@ -30,16 +30,21 @@ document.querySelector('.btn1').addEventListener('click', (ev) => {
     // console.log('Aha!', ev.target);
     console.log('gLoc:', gLoc, 'loc name:', glocName)
 })
+
+document.querySelector('.clipboard').addEventListener('click', (ev) => {
+    var elSpan = document.querySelector('.clipboard span');
+    elSpan.innerHTML = `window.location.href`;
+    
+}) 
+
 document.querySelector('form').addEventListener('submit', (ev) => {
     var elInput = document.querySelector('input')
     mapService.getCoordsByName(elInput.value)
         .then(locObj => {
-            console.log(locObj);
-            
-            mapService.addMarker(locObj);
+            mapService.addMarker(locObj.loc);
             mapService.moveCenter(locObj.loc.lat,locObj.loc.lng)
+            mapService.getWeather(locObj.loc)
         })
-    
 })
 
 function updateLocation() {
@@ -55,7 +60,9 @@ function updateLocation() {
             mapService.getLocName(gLoc)
                 .then((name) => {
                     glocName = name;
+                    document.querySelector('.loc').innerHTML = name;
                 })
+            mapService.getWeather(gLoc)
         })
         .catch(err => {
             console.log('err!!!', err);
