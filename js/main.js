@@ -14,13 +14,17 @@ window.onload = () => {
         .then(
             () => {
                 mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+                if (getParameterByName('lat')) gLoc.lat = +getParameterByName('lat');
+                if (getParameterByName('lng')) gLoc.lng = +getParameterByName('lng');
+                console.log('global:',gLoc);
+                
+                newLoc(gLoc)
             }
         );
-    updateLocation()
 }
 
 document.querySelector('.my-location').onclick = () => {
-    mapService.moveCenter(gLoc.lat, gLoc.lng)
+    mapService.moveCenter(gLoc)
 }
 document.querySelector('.update-location').onclick = () => {
     updateLocation()
@@ -34,15 +38,15 @@ document.querySelector('.btn1').addEventListener('click', (ev) => {
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
     var elSpan = document.querySelector('.clipboard span');
     elSpan.innerHTML = `window.location.href`;
-    
-}) 
+
+})
 
 document.querySelector('form').addEventListener('submit', (ev) => {
     var elInput = document.querySelector('input')
     mapService.getCoordsByName(elInput.value)
         .then(locObj => {
             mapService.addMarker(locObj.loc);
-            mapService.moveCenter(locObj.loc.lat,locObj.loc.lng)
+            mapService.moveCenter(locObj.loc)
             mapService.getWeather(locObj.loc)
         })
 })
@@ -55,16 +59,30 @@ function updateLocation() {
             let lng = pos.coords.longitude;
             console.log('User position is lat:', lat, 'lng:', lng);
             gLoc = { lat, lng }
-            mapService.addMarker(gLoc);
-            mapService.moveCenter(lat, lng);
-            mapService.getLocName(gLoc)
-                .then((name) => {
-                    glocName = name;
-                    document.querySelector('.loc').innerHTML = name;
-                })
-            mapService.getWeather(gLoc)
+            newLoc(gLoc)
         })
         .catch(err => {
             console.log('err!!!', err);
         })
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function newLoc(loc) {
+    mapService.addMarker(loc);
+    mapService.moveCenter(loc);
+    mapService.getLocName(loc)
+        .then((name) => {
+            glocName = name;
+            document.querySelector('.loc').innerHTML = name;
+        })
+    mapService.getWeather(loc)
 }

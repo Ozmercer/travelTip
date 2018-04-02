@@ -25,7 +25,9 @@ function addMarker(loc) {
     });
 }
 
-function moveCenter(lat, lng) {
+function moveCenter(loc) {
+    var lat = loc.lat;
+    var lng = loc.lng;
     map.setCenter({ lat, lng })
 }
 
