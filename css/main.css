@@ -7,14 +7,23 @@ h1 {
     font-family: 'Freckle Face', cursive;
     font-size: 3em;
     color: black;
-    -webkit-text-fill-color: #009bc2; /* Will override color (regardless of order) */
+    -webkit-text-fill-color: #a6d8ff;
     -webkit-text-stroke-width: 0.1px;
-    -webkit-text-stroke-color: #a8a8a8;
+    -webkit-text-stroke-color: #b0b0d1;
     margin: 0;  
 }
 h1 span {
-    -webkit-text-stroke-color: #009bc2; /* Will override color (regardless of order) */
-    -webkit-text-fill-color: #a8a8a8;
+    -webkit-text-stroke-color: #a6d8ff; /* Will override color (regardless of order) */
+    -webkit-text-fill-color: #9f9fa7;
+}
+
+.btns button {
+    cursor: pointer;
+    background-color: #c2fabb;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #aadaff;
 }
 
 /* ------appearance------ */
@@ -23,23 +32,48 @@ h1 span {
 }
 
 .logo {
-    width: fit-content;
     margin: 0 auto;
     padding: 0 15px;
-    background-color: #ffffff62;
+    background-color: #ffffffad;
     border: 2px solid #94949462;
 
 }
 
-/* ------actions------ */
-.nav-container {
-    border: 3px solid #36ee1e4d;
-    float: left;
+/* ------popup------ */
+.popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
 }
 
-.weather-cont{
+/* Popup arrow */
+.popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* ------actions------ */
+.data-container {
     border: 3px solid #36ee1e4d;
-    float: right;
+    padding: 15px;
+    background-color: #ffffff;
+    margin: 15px;
+    text-align: center;
 }
 
 .nav-container input[type=text] {
@@ -47,4 +81,13 @@ h1 span {
     margin-top: 8px;
     font-size: 17px;
     border: none;
-  }
+}
+
+.clipboard input {
+    position: absolute;
+    z-index: -2;
+}
+
+.weather h3 {
+    margin-top: 0;
+}

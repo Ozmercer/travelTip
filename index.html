@@ -6,33 +6,53 @@
     <title>TravelTip</title>
     <link href="https://fonts.googleapis.com/css?family=Freckle+Face" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/helpers.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div id="map" style="width: 100%; height: 100vh;position: absolute;">
         
     </div>
-    <div class="logo">
+    <div class="logo fit-content">
         <h1><span>T</span>ravel<span>T</span>ip</h1>
     </div>
-    <div class="nav-container">
-        <form action="" onsubmit="return false;">
-            <input type="search" name="search" placeholder="Search...">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <p class="here">Your current location is <span class="loc">being calculated</span></p>
-        <button class="my-location">My Location</button>
-        <button class="update-location">Update Location</button>
-        <button class="btn1">Click Me</button>
-        <button class="clipboard" style="position:relative">Copy my location to clipboard <input type="text" style="position:absolute;z-index:-1;top:0;left:0"></input></button>
-    </div>
-    <div class="weather-cont">
-        <img class="w-icon" src="" alt="">
-            <div class="weather">
+        <div class="data-container fit-content left">
+            <form action="" onsubmit="return false;">
+                <input type="search" name="search" placeholder="Search...">
+                <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+            </form>
+            <h3 class="here">Your current location is: <br>
+                 <span class="loc">being calculated</span></h3>
+            <div class="btns flex space-between">
+                <!-- <label for="my-location">My Location:</label> -->
+                <button class="my-location clean-btn" title="My Location">
+                    <i class="far fa-dot-circle"></i>
+                </button><br>
+                <!-- <label for="update-location">Refresh Location:</label> -->
+                <button class="update-location clean-btn" title="Refresh Location">
+                    <i class="fas fa-sync"></i>
+                </button><br>
+                <!-- <button class="btn1">Click Me</button><br>   -->
+                <!-- <label for="clipboard">Copy location:</label> -->
+                <button class="clipboard clean-btn" title="Copy location to clipboard">
+                    <i class="far fa-copy"></i><input type="text"></input>
+                    <span class="popuptext" id="myPopup">Coppied to clipboard</span>
+                </button>
             </div>
-    </div>
-    <script src="dist/clipboard.min.js"></script>
+        </div>
+        <div class="data-container right fit-content">
+            <img class="w-icon" src="" alt="">
+                <div class="weather">
+                </div>
+        </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+            // When the user clicks on <div>, open the popup
+            function myFunction() {
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+            }
+            </script>
     <script type="module" src="js/main.js"></script>
     
 </body>

@@ -34,10 +34,10 @@ document.querySelector('.update-location').onclick = () => {
     updateLocation()
 }
 
-document.querySelector('.btn1').addEventListener('click', (ev) => {
-    // console.log('Aha!', ev.target);
-    console.log('gLoc:', gLoc, 'loc name:', tempLoc)
-})
+// document.querySelector('.btn1').addEventListener('click', (ev) => {
+//     // console.log('Aha!', ev.target);
+//     console.log('gLoc:', gLoc, 'loc name:', tempLoc)
+// })
 
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
     var urlIdx = window.location.href.indexOf('?');
@@ -47,7 +47,6 @@ document.querySelector('.clipboard').addEventListener('click', (ev) => {
     elInput.select();
     document.execCommand("Copy");
     console.log('Copied:', elInput.value);
-    
 })
 
 document.querySelector('form').addEventListener('submit', (ev) => {

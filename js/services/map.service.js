@@ -3,6 +3,7 @@ import { GoogleMapsApi } from './gmap.class.js';
 var map;
 var M_KEY = 'AIzaSyAOzqtxyN_Q_x0Ceo4up_rXc5GLN8ozwdA';
 var W_KEY = '3d58c64df0e014b1f5d891aaaf78be6b';
+var locName;
 
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
@@ -36,6 +37,11 @@ function getLocName(loc) {
     return axios
             .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${M_KEY}`)
             .then(res => {
+                var locality = res.data.results.filter(result => {
+                    return result.types.indexOf("locality") >= 0
+                });
+                locName = locality[0].formatted_address;
+                
                 var name = res.data.results['0'].formatted_address;
                 // document.querySelector('.loc').innerHTML = name;
                 return name
@@ -53,7 +59,7 @@ function getWeather(loc) {
             getLocName(loc)
                 .then(name => {
                     elWeather.innerHTML = `
-                        <h2>Local weather: ${desc.description}</h2><br>
+                        <h3>${locName}:<br> ${desc.description}</h3>
                         <p>Temperature: ${parseInt(data.temp)}°C</p>
                         <p>Humidity: ${data.humidity}%</p>`
                     //     <p>High: ${parseInt(data.temp_max)}°C</p>
