@@ -61,12 +61,10 @@ document.querySelector('form').addEventListener('submit', (ev) => {
 })
 
 function updateLocation() {
-    console.log('Processing...');
     locService.getPosition()
         .then(pos => {
             let lat = pos.coords.latitude;
             let lng = pos.coords.longitude;
-            console.log('User position is lat:', lat, 'lng:', lng);
             gLoc = { lat, lng }
             newLoc(gLoc)
         })

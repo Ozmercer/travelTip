@@ -37,13 +37,19 @@ function getLocName(loc) {
     return axios
             .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${M_KEY}`)
             .then(res => {
-                var locality = res.data.results.filter(result => {
+                var locality;
+                locality = res.data.results.filter(result => {
                     return result.types.indexOf("locality") >= 0
                 });
-                locName = locality[0].formatted_address;
+                if (locality.length === 0) {
+                    locality = res.data.results.filter(result => {
+                        return result.types.indexOf("political") >= 0
+                    });
+                }
+                if (locality) locName = locality[0].formatted_address;
+                else locName = 'Unnamed location';
                 
                 var name = res.data.results['0'].formatted_address;
-                // document.querySelector('.loc').innerHTML = name;
                 return name
             })
 }
@@ -59,9 +65,10 @@ function getWeather(loc) {
             getLocName(loc)
                 .then(name => {
                     elWeather.innerHTML = `
-                        <h3>${locName}:<br> ${desc.description}</h3>
+                        <h3><span>${locName}:</span><br> ${desc.description}</h3>
                         <p>Temperature: ${parseInt(data.temp)}°C</p>
-                        <p>Humidity: ${data.humidity}%</p>`
+                        <p>Humidity: ${data.humidity}%</p>
+                        <p>Wind speed: ${weather.data.wind.speed}</p>`
                     //     <p>High: ${parseInt(data.temp_max)}°C</p>
                     //     <p>Low: ${parseInt(data.temp)}°C</p>
                     // `
