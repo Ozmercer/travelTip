@@ -46,12 +46,14 @@ function getWeather(loc) {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lng}&units=metric&APPID=${W_KEY}`)
         .then((weather) => {
             var data = weather.data.main;
-            var desc = weather.data.weather[0].description;
+            var desc = weather.data.weather[0];
+            var elIcon = document.querySelector('.w-icon');
+            elIcon.setAttribute('src', `http://api.openweathermap.org/img/w/${desc.icon}.png`)
             var elWeather = document.querySelector('.weather');
             getLocName(loc)
                 .then(name => {
                     elWeather.innerHTML = `
-                        <h2>Local weather: ${desc}</h2><br>
+                        <h2>Local weather: ${desc.description}</h2><br>
                         <p>Temperature: ${parseInt(data.temp)}°C</p>
                         <p>Humidity: ${data.humidity}%</p>`
                     //     <p>High: ${parseInt(data.temp_max)}°C</p>

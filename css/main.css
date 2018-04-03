@@ -1,0 +1,50 @@
+/* --------general-------- */
+body {
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Freckle Face', cursive;
+    font-size: 3em;
+    color: black;
+    -webkit-text-fill-color: #009bc2; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: #a8a8a8;
+    margin: 0;  
+}
+h1 span {
+    -webkit-text-stroke-color: #009bc2; /* Will override color (regardless of order) */
+    -webkit-text-fill-color: #a8a8a8;
+}
+
+/* ------appearance------ */
+#map {
+    z-index: -1;
+}
+
+.logo {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0 15px;
+    background-color: #ffffff62;
+    border: 2px solid #94949462;
+
+}
+
+/* ------actions------ */
+.nav-container {
+    border: 3px solid #36ee1e4d;
+    float: left;
+}
+
+.weather-cont{
+    border: 3px solid #36ee1e4d;
+    float: right;
+}
+
+.nav-container input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }

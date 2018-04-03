@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ES6</title>
+    <title>TravelTip</title>
+    <link href="https://fonts.googleapis.com/css?family=Freckle+Face" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h1>ES6</h1>
-    <form action="" onsubmit="return false;">
-        <label for="search">Search</label>
-        <input type="search" name="search">
-    </form>
-    <div id="map" style="width: 100%; height: 400px;">
-
+    <div id="map" style="width: 100%; height: 100vh;position: absolute;">
+        
     </div>
-    <p class="here">Your current location is <span class="loc">being calculated</span></p>
-    <button class="my-location">My Location</button>
-    <button class="update-location">Update Location</button>
-    <button class="btn1">Click Me</button>
-    <button class="clipboard">Copy my location to clipboard <span hidden></span></button>
-    <div class="weather">☼☼☼</div>
+    <div class="logo">
+        <h1><span>T</span>ravel<span>T</span>ip</h1>
+    </div>
+    <div class="nav-container">
+        <form action="" onsubmit="return false;">
+            <input type="search" name="search" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <p class="here">Your current location is <span class="loc">being calculated</span></p>
+        <button class="my-location">My Location</button>
+        <button class="update-location">Update Location</button>
+        <button class="btn1">Click Me</button>
+        <button class="clipboard" style="position:relative">Copy my location to clipboard <input type="text" style="position:absolute;z-index:-1;top:0;left:0"></input></button>
+    </div>
+    <div class="weather-cont">
+        <img class="w-icon" src="" alt="">
+            <div class="weather">
+            </div>
+    </div>
+    <script src="dist/clipboard.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="js/main.js"></script>
     

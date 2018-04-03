@@ -14,12 +14,15 @@ window.onload = () => {
     mapService.initMap()
         .then(
             () => {
-                mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
-                if (getParameterByName('lat')) gLoc.lat = +getParameterByName('lat');
-                if (getParameterByName('lng')) gLoc.lng = +getParameterByName('lng');
-                console.log('global:',gLoc);
-                tempLoc = gLoc;
-                newLoc(gLoc)
+                gLoc = { lat: 32.0749831, lng: 34.9120554 }; //default
+                if (getParameterByName('lat') || getParameterByName('lng')) {
+                    if (getParameterByName('lat')) gLoc.lat = +getParameterByName('lat');
+                    if (getParameterByName('lng')) gLoc.lng = +getParameterByName('lng');
+                    console.log('global:',gLoc);
+                    tempLoc = gLoc;
+                    newLoc(gLoc)
+                }
+                else updateLocation()
             }
         );
 }
@@ -33,13 +36,17 @@ document.querySelector('.update-location').onclick = () => {
 
 document.querySelector('.btn1').addEventListener('click', (ev) => {
     // console.log('Aha!', ev.target);
-    console.log('gLoc:', gLoc, 'loc name:', glocName)
+    console.log('gLoc:', gLoc, 'loc name:', tempLoc)
 })
 
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
-    var elSpan = document.querySelector('.clipboard span');
-    elSpan.innerHTML = window.location.href + `?lat=${tempLoc.lat}&amp;lng=${tempLoc.lng}`;
-    console.log(elSpan.innerHTML);
+    var urlIdx = window.location.href.indexOf('?');
+    var url = window.location.href.slice(0,urlIdx);
+    var elInput = document.querySelector('.clipboard input');
+    elInput.value = url + `?lat=${tempLoc.lat}&lng=${tempLoc.lng}`;
+    elInput.select();
+    document.execCommand("Copy");
+    console.log('Copied:', elInput.value);
     
 })
 
