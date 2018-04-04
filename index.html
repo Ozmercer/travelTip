@@ -16,32 +16,35 @@
     <div class="logo fit-content">
         <h1><span>T</span>ravel<span>T</span>ip</h1>
     </div>
-        <div class="data-container fit-content left">
-            <form action="" onsubmit="return false;">
-                <input type="search" name="search" placeholder="Search..." autofocus>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-            <h3 class="here">Your current location is: <br>
-                 <span class="loc">being calculated</span></h3>
-            <div class="btns flex space-between">
-                <button class="my-location clean-btn" title="My Location">
-                    <i class="far fa-dot-circle"></i>
-                </button><br>
-                <button class="update-location clean-btn" title="Refresh Location">
-                    <i class="fas fa-sync"></i>
-                </button><br>
 
-                <button class="clipboard clean-btn" title="Copy location to clipboard">
-                    <i class="far fa-copy"></i><input type="text"></input>
-                    <span class="popup hide" >Coppied to clipboard</span>
-                </button>
+    <div class="data-container fit-content left">
+        <form action="" onsubmit="return false;">
+            <input type="search" name="search" placeholder="Search..." autofocus>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+        <h3 class="here">Your current location is: <br>
+                <span class="loc">being calculated</span></h3>
+        <div class="btns flex space-between">
+            <button class="my-location clean-btn" title="My Location">
+                <i class="far fa-dot-circle"></i>
+            </button><br>
+            <button class="update-location clean-btn" title="Refresh Location">
+                <i class="fas fa-sync"></i>
+            </button><br>
+
+            <button class="clipboard clean-btn" title="Copy location to clipboard">
+                <i class="far fa-copy"></i><input type="text"></input>
+                <span class="popup hide" >Coppied to clipboard</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="data-container weather-container right fit-content">
+        <button class="close-modal clean-btn">X</button>
+        <img class="w-icon" src="" alt="">
+            <div class="weather">
             </div>
-        </div>
-        <div class="data-container weather-container right fit-content">
-            <img class="w-icon" src="" alt="">
-                <div class="weather">
-                </div>
-        </div>
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     <script type="module" src="js/main.js"></script>

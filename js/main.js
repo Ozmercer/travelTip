@@ -47,6 +47,10 @@ document.querySelector('.clipboard').addEventListener('click', (ev) => {
     setTimeout(()=> {
         elPopup.classList.add('hide')
     },1000)
+
+    // ---TEST---
+    var elModal = document.querySelector('.weather-container')
+    elModal.classList.add('front')
 })
 
 document.querySelector('form').addEventListener('submit', (ev) => {
@@ -58,6 +62,10 @@ document.querySelector('form').addEventListener('submit', (ev) => {
             mapService.moveCenter(locObj.loc)
             mapService.getWeather(locObj.loc)
         })
+})
+document.querySelector('.close-modal').addEventListener('click', (ev) => {
+    var elModal = document.querySelector('.weather-container')
+    elModal.classList.remove('front')
 })
 
 function updateLocation() {
