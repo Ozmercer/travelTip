@@ -54,14 +54,14 @@ function getLocName(loc) {
 }
 
 function getWeather(loc) {
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lng}&units=metric&APPID=${W_KEY}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lng}&units=metric&APPID=${W_KEY}`)
         .then((weather) => {
             var data = weather.data.main;
             var desc = weather.data.weather[0];
             var elIcon = document.querySelector('.w-icon');
-            elIcon.setAttribute('src', `http://api.openweathermap.org/img/w/${desc.icon}.png`)
+            elIcon.setAttribute('src', `https://api.openweathermap.org/img/w/${desc.icon}.png`)
             var elMobileIcon = document.querySelector('.mobile-icon');
-            elMobileIcon.setAttribute('src', `http://api.openweathermap.org/img/w/${desc.icon}.png`)
+            elMobileIcon.setAttribute('src', `https://api.openweathermap.org/img/w/${desc.icon}.png`)
             var elWeather = document.querySelector('.weather');
             getLocName(loc)
                 .then(name => {
