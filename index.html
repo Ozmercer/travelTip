@@ -18,41 +18,32 @@
     </div>
         <div class="data-container fit-content left">
             <form action="" onsubmit="return false;">
-                <input type="search" name="search" placeholder="Search...">
+                <input type="search" name="search" placeholder="Search..." autofocus>
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
             <h3 class="here">Your current location is: <br>
                  <span class="loc">being calculated</span></h3>
             <div class="btns flex space-between">
-                <!-- <label for="my-location">My Location:</label> -->
                 <button class="my-location clean-btn" title="My Location">
                     <i class="far fa-dot-circle"></i>
                 </button><br>
-                <!-- <label for="update-location">Refresh Location:</label> -->
                 <button class="update-location clean-btn" title="Refresh Location">
                     <i class="fas fa-sync"></i>
                 </button><br>
-                <!-- <button class="btn1">Click Me</button><br>   -->
-                <!-- <label for="clipboard">Copy location:</label> -->
+
                 <button class="clipboard clean-btn" title="Copy location to clipboard">
                     <i class="far fa-copy"></i><input type="text"></input>
-                    <span class="popuptext" id="myPopup">Coppied to clipboard</span>
+                    <span class="popup hide" >Coppied to clipboard</span>
                 </button>
             </div>
         </div>
-        <div class="data-container right fit-content">
+        <div class="data-container weather-container right fit-content">
             <img class="w-icon" src="" alt="">
                 <div class="weather">
                 </div>
         </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-            // When the user clicks on <div>, open the popup
-            function myFunction() {
-                var popup = document.getElementById("myPopup");
-                popup.classList.toggle("show");
-            }
-            </script>
+    
     <script type="module" src="js/main.js"></script>
     
 </body>

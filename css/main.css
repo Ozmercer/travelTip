@@ -40,36 +40,20 @@ h1 span {
 }
 
 /* ------popup------ */
-.popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
+.hide {
+    display: none;
 }
 
-/* Popup arrow */
-.popuptext::after {
-    content: "";
+.popup {
     position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-.container .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+    background-color: #9f9fa7;
+    color: #fff;
+    top: 110%;
+    left: -150%;
+    padding: 3px;
+    border: 1px solid black;
+    width: 81px;
+    border-radius: 15px;
 }
 
 /* ------actions------ */
@@ -92,6 +76,9 @@ h1 span {
 .clipboard {
     position: relative;
 }
+.clipboard:focus {
+    outline: none;
+}
 
 .clipboard input {
     position: absolute;
@@ -106,6 +93,17 @@ h1 span {
     color: dodgerblue;
 }
 
-@media (min-width: 700px) {
+/* -----weather modal----- */
+.weather-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
 
+@media (min-width: 700px) {
+    .weather-container {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+    }
 }

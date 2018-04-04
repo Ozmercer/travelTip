@@ -33,7 +33,6 @@ function moveCenter(loc) {
 }
 
 function getLocName(loc) {
-    // var name = 'being calculated'
     return axios
             .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${M_KEY}`)
             .then(res => {
@@ -68,10 +67,8 @@ function getWeather(loc) {
                         <h3><span>${locName}:</span><br> ${desc.description}</h3>
                         <p>Temperature: ${parseInt(data.temp)}°C</p>
                         <p>Humidity: ${data.humidity}%</p>
-                        <p>Wind speed: ${weather.data.wind.speed}</p>`
-                    //     <p>High: ${parseInt(data.temp_max)}°C</p>
-                    //     <p>Low: ${parseInt(data.temp)}°C</p>
-                    // `
+                        <p>Wind speed: ${weather.data.wind.speed}m/s</p>`
+
                 })
         })
 }
@@ -82,7 +79,6 @@ function getCoordsByName(name) {
                 var locName;
                 var loc = coords.data.results[0].geometry.location;
                 return getLocName(loc).then(name => {
-                    // locName = name                    
                     return {
                         name,
                         loc,

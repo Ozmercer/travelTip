@@ -7,19 +7,16 @@ var gLoc = {};
 var glocName;
 var tempLoc;
 
-// locService.getLocs()
-//     .then(locs => console.log('locs', locs))
-
 window.onload = () => {
     mapService.initMap()
         .then(
             () => {
                 gLoc = { lat: 32.0749831, lng: 34.9120554 }; //default
+                tempLoc = gLoc;
                 if (getParameterByName('lat') || getParameterByName('lng')) {
                     if (getParameterByName('lat')) gLoc.lat = +getParameterByName('lat');
                     if (getParameterByName('lng')) gLoc.lng = +getParameterByName('lng');
-                    console.log('global:',gLoc);
-                    tempLoc = gLoc;
+                    console.log('global:', gLoc);
                     newLoc(gLoc)
                 }
                 else updateLocation()
@@ -34,26 +31,29 @@ document.querySelector('.update-location').onclick = () => {
     updateLocation()
 }
 
-// document.querySelector('.btn1').addEventListener('click', (ev) => {
-//     // console.log('Aha!', ev.target);
-//     console.log('gLoc:', gLoc, 'loc name:', tempLoc)
-// })
-
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
     var urlIdx = window.location.href.indexOf('?');
-    var url = window.location.href.slice(0,urlIdx);
+    var url;
+    if (urlIdx < 0) url = window.location.href;
+    else url = window.location.href.slice(0, urlIdx);
     var elInput = document.querySelector('.clipboard input');
     elInput.value = url + `?lat=${tempLoc.lat}&lng=${tempLoc.lng}`;
     elInput.select();
     document.execCommand("Copy");
     console.log('Copied:', elInput.value);
+
+    var elPopup = document.querySelector('.popup');
+    elPopup.classList.remove('hide');
+    setTimeout(()=> {
+        elPopup.classList.add('hide')
+    },1000)
 })
 
 document.querySelector('form').addEventListener('submit', (ev) => {
     var elInput = document.querySelector('input')
     mapService.getCoordsByName(elInput.value)
         .then(locObj => {
-            tempLoc = {lat:locObj.loc.lat, lng:locObj.loc.lng}
+            tempLoc = { lat: locObj.loc.lat, lng: locObj.loc.lng }
             mapService.addMarker(locObj.loc);
             mapService.moveCenter(locObj.loc)
             mapService.getWeather(locObj.loc)
@@ -93,3 +93,4 @@ function newLoc(loc) {
         })
     mapService.getWeather(loc)
 }
+
