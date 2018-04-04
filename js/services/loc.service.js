@@ -32,7 +32,7 @@ function getPosition() {
                     longitude: 34.8016837
                 }   
             })
-        },1000)
+        },5000)
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
 }
