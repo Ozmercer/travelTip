@@ -60,6 +60,8 @@ function getWeather(loc) {
             var desc = weather.data.weather[0];
             var elIcon = document.querySelector('.w-icon');
             elIcon.setAttribute('src', `http://api.openweathermap.org/img/w/${desc.icon}.png`)
+            var elMobileIcon = document.querySelector('.mobile-icon');
+            elMobileIcon.setAttribute('src', `http://api.openweathermap.org/img/w/${desc.icon}.png`)
             var elWeather = document.querySelector('.weather');
             getLocName(loc)
                 .then(name => {

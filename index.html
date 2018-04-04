@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip</title>
     <link href="https://fonts.googleapis.com/css?family=Freckle+Face" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/helpers.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <div id="map" style="width: 100%; height: 100vh;position: absolute;">
-        
+
     </div>
     <div class="logo fit-content">
         <h1><span>T</span>ravel<span>T</span>ip</h1>
     </div>
 
-    <div class="data-container fit-content left">
-        <form action="" onsubmit="return false;">
-            <input type="search" name="search" placeholder="Search..." autofocus>
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-        <h3 class="here">Your current location is: <br>
-                <span class="loc">being calculated</span></h3>
-        <div class="btns flex space-between">
-            <button class="my-location clean-btn" title="My Location">
-                <i class="far fa-dot-circle"></i>
-            </button><br>
-            <button class="update-location clean-btn" title="Refresh Location">
-                <i class="fas fa-sync"></i>
-            </button><br>
+    <div class="data-container fit-content left mobile-header">
+        <div class="nav-container">
+            <form action="" onsubmit="return false;">
+                <input type="search" name="search" placeholder="Search..." autofocus>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <h3 class="here">Your current location is:<br>
+                <span class="loc">being calculated</span>
+            </h3>
+            <div class="btns flex space-between align-center">
+                <button class="my-location clean-btn" title="My Location">
+                    <i class="far fa-dot-circle"></i>
+                </button><br>
+                <button class="update-location clean-btn" title="Refresh Location">
+                    <i class="fas fa-sync"></i>
+                </button><br>
 
-            <button class="clipboard clean-btn" title="Copy location to clipboard">
-                <i class="far fa-copy"></i><input type="text"></input>
-                <span class="popup hide" >Coppied to clipboard</span>
-            </button>
+                <button class="clipboard clean-btn" title="Copy location to clipboard">
+                    <i class="far fa-copy"></i><input type="text"></input>
+                    <span class="popup hide">Coppied to clipboard</span>
+                </button>
+                <img src="" class="mobile-icon">
+            </div>
         </div>
     </div>
 
     <div class="data-container weather-container right fit-content">
         <button class="close-modal clean-btn">X</button>
         <img class="w-icon" src="" alt="">
-            <div class="weather">
-            </div>
+        <div class="weather">
+        </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+
     <script type="module" src="js/main.js"></script>
-    
+
 </body>
+
 </html>

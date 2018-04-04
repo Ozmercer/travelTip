@@ -21,13 +21,21 @@ h1 span {
     -webkit-text-fill-color: #9f9fa7;
 }
 
-.btns button {
+.btns button,
+button {
     cursor: pointer;
     background-color: #c2fabb;
     width: 25px;
     height: 25px;
+    margin: 5px;
     border-radius: 50%;
     border: 1px solid #aadaff;
+}
+
+input {
+    padding: 0 10px;
+    border-radius: 5px;
+
 }
 
 /* ------appearance------ */
@@ -36,11 +44,24 @@ h1 span {
 }
 
 .logo {
-    margin: 0 auto;
+    margin: 0 auto 30px;
+    top: 20px;
     padding: 0 15px 5px 15px;
     background-color: #ffffffad;
     border: 2px solid #94949462;
+    border-top: none;
+}
 
+.mobile-header {
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-position-x: 105%;
+    background-position-y: 50%;
+    background-size: 55%;
+}
+
+.mobile-icon {
+    cursor: pointer;
 }
 
 /* ------popup------ */
@@ -62,19 +83,42 @@ h1 span {
 
 /* ------actions------ */
 .data-container {
-    border: 3px solid #c0ecae;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    border-bottom: 3px solid #c0ecae;
     padding: 15px;
     background-color: #ffffff;
-    margin: 15px;
     text-align: center;
-    max-width: 300px;
+    width: 100%;
 }
 
-.nav-container input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-container > .btns {
+    width: 50%;
+}
+.nav-container > h3 {
+    display: none;
+}
+
+/* ----form---- */
+form {
+    display: flex;
+}
+
+form button {
+    display: none;
+}
+
+form input {
+    border: #c2fabb solid;
+    box-shadow: 2px 2px 2px #ededed;
+    margin: 0 15px;
+    width: 40vw;
 }
 
 .clipboard {
@@ -86,6 +130,7 @@ h1 span {
 
 .clipboard input {
     position: absolute;
+    right: 0;
     z-index: -2;
 }
 
@@ -142,4 +187,50 @@ h1 span {
     .close-modal {
         display: none;
     }
+
+    .data-container {
+        position: relative;
+        border: 3px solid #c0ecae;
+        padding: 15px;
+        background-color: #ffffff;
+        margin: 15px;
+        text-align: center;
+        max-width: 280px;
+    }
+
+    .nav-container {
+        display: block;
+    }
+
+    .nav-container > h3 {
+        position: relative;
+        display: block;
+    }
+
+    .nav-container .btns {
+        width: 100%;
+    }
+
+    .mobile-icon {
+        display: none;
+    }
+
+    form button {
+        display: inline;
+    }
+
+    form input {
+        width: auto;
+    }
+
+    .mobile-header {
+        background-image: none;
+    }
 }
+
+/* TODO
+* set data-container is top bar in mobile
+* remove logo and loc-name, add weather icon
+* open modal using weather icon
+* remove modal activation via copy btn
+*/

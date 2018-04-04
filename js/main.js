@@ -26,10 +26,15 @@ window.onload = () => {
 
 document.querySelector('.my-location').onclick = () => {
     mapService.moveCenter(gLoc)
+    mapService.getWeather(gLoc)
 }
 document.querySelector('.update-location').onclick = () => {
     updateLocation()
 }
+document.querySelector('.mobile-icon').addEventListener('click', (ev) => {
+    var elModal = document.querySelector('.weather-container')
+    elModal.classList.add('front')
+})
 
 document.querySelector('.clipboard').addEventListener('click', (ev) => {
     var urlIdx = window.location.href.indexOf('?');
@@ -47,11 +52,8 @@ document.querySelector('.clipboard').addEventListener('click', (ev) => {
     setTimeout(()=> {
         elPopup.classList.add('hide')
     },1000)
-
-    // ---TEST---
-    var elModal = document.querySelector('.weather-container')
-    elModal.classList.add('front')
 })
+
 
 document.querySelector('form').addEventListener('submit', (ev) => {
     var elInput = document.querySelector('input')
