@@ -15,6 +15,12 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
+        var marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            draggable: true,
+            icon: '/img/genie.png'
+        });
     });
 
 
@@ -23,6 +29,9 @@ function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
         map: map,
+        icon: '/img/genie.png',
+        draggable: true,
+        animation: google.maps.Animation.DROP,
     });
 }
 
@@ -34,23 +43,23 @@ function moveCenter(loc) {
 
 function getLocName(loc) {
     return axios
-            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${M_KEY}`)
-            .then(res => {
-                var locality;
+        .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${loc.lat},${loc.lng}&key=${M_KEY}`)
+        .then(res => {
+            var locality;
+            locality = res.data.results.filter(result => {
+                return result.types.indexOf("locality") >= 0
+            });
+            if (locality.length === 0) {
                 locality = res.data.results.filter(result => {
-                    return result.types.indexOf("locality") >= 0
+                    return result.types.indexOf("political") >= 0
                 });
-                if (locality.length === 0) {
-                    locality = res.data.results.filter(result => {
-                        return result.types.indexOf("political") >= 0
-                    });
-                }
-                if (locality) locName = locality[0].formatted_address;
-                else locName = 'Unnamed location';
-                
-                var name = res.data.results['0'].formatted_address;
-                return name
-            })
+            }
+            if (locality) locName = locality[0].formatted_address;
+            else locName = 'Unnamed location';
+
+            var name = res.data.results['0'].formatted_address;
+            return name
+        })
 }
 
 function getWeather(loc) {
@@ -77,16 +86,16 @@ function getWeather(loc) {
 
 function getCoordsByName(name) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${name}&key=${M_KEY}`)
-            .then((coords) => {
-                var locName;
-                var loc = coords.data.results[0].geometry.location;
-                return getLocName(loc).then(name => {
-                    return {
-                        name,
-                        loc,
-                    }
-                })
+        .then((coords) => {
+            var locName;
+            var loc = coords.data.results[0].geometry.location;
+            return getLocName(loc).then(name => {
+                return {
+                    name,
+                    loc,
+                }
             })
+        })
 }
 
 export default {
