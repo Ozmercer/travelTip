@@ -30,7 +30,7 @@ function addMarker(loc) {
     var marker = new google.maps.Marker({
         position: loc,
         map: map,
-        icon: '/img/genie.png',
+        icon: '/travelTip/img/genie.png',
         draggable: true,
         animation: google.maps.Animation.DROP,
     });
